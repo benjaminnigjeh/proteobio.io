@@ -187,16 +187,48 @@ if (contactForm) {
   });
 }
 
-/* ─── Newsletter form (placeholder — connect Mailchimp later) ── */
+/* ─── Newsletter form (Mailchimp) ────────────────────────────── */
+// After creating your Mailchimp audience, go to:
+//   Audience → Signup Forms → Embedded Forms
+// Copy the form action URL (looks like:
+//   https://proteobio.us21.list-manage.com/subscribe/post?u=XXXX&amp;id=YYYY
+// and paste it below, replacing PASTE_MAILCHIMP_ACTION_URL_HERE
+const MAILCHIMP_URL = 'PASTE_MAILCHIMP_ACTION_URL_HERE';
+
 const nlForm = document.getElementById('newsletter-form');
 
 if (nlForm) {
-  nlForm.addEventListener('submit', (e) => {
+  nlForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = nlForm.querySelector('input[type="email"]').value;
-    // TODO: Replace with real Mailchimp embedded form action URL
-    console.log('Newsletter signup:', email);
-    nlForm.innerHTML = '<p style="color: var(--green); font-weight: 600;">🎉 You\'re on the list! Watch your inbox.</p>';
+    const btn   = nlForm.querySelector('button');
+
+    // If Mailchimp URL not yet configured, show friendly message
+    if (MAILCHIMP_URL.startsWith('PASTE_')) {
+      nlForm.innerHTML = '<p style="color:var(--green);font-weight:600;">🎉 Thanks! We\'ll reach out soon at ' + email + '</p>';
+      return;
+    }
+
+    btn.textContent = 'Subscribing…';
+    btn.disabled = true;
+
+    // Mailchimp requires JSONP (no CORS on their endpoint)
+    // We use a hidden iframe trick — works without a server
+    const url = MAILCHIMP_URL.replace('/post?', '/post-json?') + '&EMAIL=' + encodeURIComponent(email) + '&c=mailchimpCallback';
+
+    window.mailchimpCallback = (data) => {
+      if (data.result === 'success') {
+        nlForm.innerHTML = '<p style="color:var(--green);font-weight:600;">🎉 You\'re on the list! Watch your inbox.</p>';
+      } else {
+        nlForm.innerHTML = '<p style="color:#f87171;">❌ ' + (data.msg || 'Something went wrong. Try again.') + '</p>';
+      }
+      document.getElementById('mc-jsonp')?.remove();
+    };
+
+    const script = document.createElement('script');
+    script.id  = 'mc-jsonp';
+    script.src = url;
+    document.body.appendChild(script);
   });
 }
 
