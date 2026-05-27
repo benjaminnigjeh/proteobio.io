@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ProteoAgent — Multi-agent AI platform for proteomics research. Automate protein analysis, accelerate discovery." />
+  <title>ProteoBio | ProteoAgent</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">⬡</span>
+        <span>ProteoBio</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-sm">Get Early Access</a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section id="hero">
+    <canvas id="bg-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Multi-Agent AI System
+      </div>
+      <h1>
+        Unlock the proteome<br />
+        with <span class="gradient-text">ProteoAgent</span>
+      </h1>
+      <p class="hero-sub">
+        A collaborative network of specialized AI agents that automates protein analysis,
+        interprets mass spectrometry data, and accelerates biomedical discovery — at scale.
+      </p>
+      <div class="hero-cta">
+        <a href="#how-it-works" class="btn btn-primary">See How It Works</a>
+        <a href="#contact" class="btn btn-ghost">Request Demo →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">10×</span><span class="stat-label">Faster Analysis</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Scalable Agents</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Reproducible</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">About ProteoAgent</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>AI that thinks like a team of proteomics experts</h2>
+          <p>
+            ProteoAgent is a multi-agent AI system purpose-built for proteomics. Rather than a single
+            monolithic model, it deploys a coordinated network of specialized agents — each expert in
+            a distinct step of the proteomics pipeline.
+          </p>
+          <p>
+            From raw mass spectrometry data ingestion to protein identification, post-translational
+            modification mapping, and biological interpretation, ProteoAgent agents collaborate,
+            cross-check, and iterate — the same way a multidisciplinary research team would.
+          </p>
+          <a href="#how-it-works" class="btn btn-outline">Explore the Architecture →</a>
+        </div>
+        <div class="about-visual">
+          <div class="agent-orbs">
+            <div class="orb orb-center" data-label="Orchestrator">
+              <span>⬡</span>
+            </div>
+            <div class="orb orb-1" data-label="MS Parser"><span>MS</span></div>
+            <div class="orb orb-2" data-label="ID Agent"><span>ID</span></div>
+            <div class="orb orb-3" data-label="PTM Agent"><span>PTM</span></div>
+            <div class="orb orb-4" data-label="Bio Interpret"><span>BIO</span></div>
+            <svg class="orb-lines" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+              <line x1="150" y1="150" x2="150" y2="40" class="orb-line" />
+              <line x1="150" y1="150" x2="255" y2="205" class="orb-line" />
+              <line x1="150" y1="150" x2="195" y2="260" class="orb-line" />
+              <line x1="150" y1="150" x2="45" y2="205" class="orb-line" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURES ──────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="container">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">What ProteoAgent can do</h2>
+      <p class="section-sub">
+        Each agent is a specialist. Together they form a complete proteomics intelligence platform.
+      </p>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🧬</div>
+          <h3>Protein Identification</h3>
+          <p>Automated sequence database searching and de novo peptide sequencing from MS/MS spectra with high confidence scoring.</p>
+          <div class="feature-tag">Mass Spec · Database Search</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔬</div>
+          <h3>PTM Mapping</h3>
+          <p>Comprehensive post-translational modification detection — phosphorylation, glycosylation, ubiquitination and beyond — with site localization.</p>
+          <div class="feature-tag">PTM · Site Localization</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Quantitative Analysis</h3>
+          <p>Label-free and label-based quantification across samples. Statistical analysis, differential expression, and volcano plots — automated.</p>
+          <div class="feature-tag">LFQ · TMT · SILAC</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🕸️</div>
+          <h3>Pathway Enrichment</h3>
+          <p>Instant biological interpretation: GO term enrichment, KEGG pathway mapping, and protein-protein interaction network analysis.</p>
+          <div class="feature-tag">GO · KEGG · STRING</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Agent Collaboration</h3>
+          <p>Agents share intermediate results, flag uncertainties, and request validation from peer agents — mimicking expert peer review.</p>
+          <div class="feature-tag">Multi-Agent · Self-Correction</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Automated Reports</h3>
+          <p>Publication-ready reports with figures, statistical summaries, and methods sections — generated end-to-end from raw data.</p>
+          <div class="feature-tag">Reports · Reproducibility</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ──────────────────────────────────────────── -->
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-label">Architecture</div>
+      <h2 class="section-title">How ProteoAgent works</h2>
+      <p class="section-sub">A pipeline of coordinated agents — each one expert, all working in concert.</p>
+
+      <div class="pipeline">
+
+        <div class="pipeline-step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3>Data Ingestion Agent</h3>
+            <p>Accepts raw mass spectrometry files (mzML, raw, d). Validates, converts formats, and indexes spectra for downstream agents.</p>
+          </div>
+          <div class="step-chip">Input Layer</div>
+        </div>
+
+        <div class="pipeline-arrow">↓</div>
+
+        <div class="pipeline-step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3>Search & Identification Agent</h3>
+            <p>Runs database searches against UniProt/SwissProt, scores PSMs, applies FDR thresholds, and flags ambiguous identifications for review.</p>
+          </div>
+          <div class="step-chip">Core Analysis</div>
+        </div>
+
+        <div class="pipeline-arrow">↓</div>
+
+        <div class="pipeline-step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3>PTM & Quantification Agent</h3>
+            <p>Detects modifications, performs quantification across conditions, and runs statistical comparisons with multiple testing correction.</p>
+          </div>
+          <div class="step-chip">Quantitative Layer</div>
+        </div>
+
+        <div class="pipeline-arrow">↓</div>
+
+        <div class="pipeline-step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h3>Biological Interpretation Agent</h3>
+            <p>Contextualizes results with literature, pathways, and interaction networks. Generates hypotheses for follow-up experiments.</p>
+          </div>
+          <div class="step-chip">Intelligence Layer</div>
+        </div>
+
+        <div class="pipeline-arrow">↓</div>
+
+        <div class="pipeline-step">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <h3>Report & Validation Agent</h3>
+            <p>Compiles findings, cross-validates with peer agents, and outputs reproducible reports with full provenance tracking.</p>
+          </div>
+          <div class="step-chip">Output Layer</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NEWSLETTER ────────────────────────────────────────────── -->
+  <section id="newsletter">
+    <div class="container">
+      <div class="newsletter-box">
+        <div class="nl-text">
+          <h2>Stay on the frontier</h2>
+          <p>Get updates on ProteoAgent research, early access opportunities, and proteomics AI insights.</p>
+        </div>
+        <form class="nl-form" id="newsletter-form">
+          <input type="email" name="email" placeholder="your@institution.edu" required autocomplete="email" />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <p class="nl-note">No spam. Unsubscribe anytime. We respect your inbox.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Work with us</h2>
+      <p class="section-sub">Whether you're a researcher, institution, or biotech — let's talk.</p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-card">
+            <div class="cc-icon">✉️</div>
+            <h3>Email Us</h3>
+            <p>For general inquiries and collaborations</p>
+            <a href="mailto:hello@proteobio.io">hello@proteobio.io</a>
+          </div>
+          <div class="contact-card">
+            <div class="cc-icon">🔬</div>
+            <h3>Research Partnership</h3>
+            <p>Academic and institutional collaborations</p>
+            <a href="mailto:research@proteobio.io">research@proteobio.io</a>
+          </div>
+          <div class="contact-card">
+            <div class="cc-icon">🚀</div>
+            <h3>Early Access</h3>
+            <p>Join our pilot program</p>
+            <a href="mailto:pilot@proteobio.io">pilot@proteobio.io</a>
+          </div>
+        </div>
+
+        <!-- Formspree-powered contact form (update action URL after registering) -->
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Dr. Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jane@university.edu" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="org">Organization</label>
+            <input type="text" id="org" name="organization" placeholder="University / Company" />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="early-access">Early Access Request</option>
+              <option value="collaboration">Research Collaboration</option>
+              <option value="demo">Schedule a Demo</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your research..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Send Message →</button>
+          <div class="form-status" id="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">⬡</span>
+            <span>ProteoBio</span>
+          </a>
+          <p>Advancing proteomics through collaborative AI.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">Architecture</a></li>
+              <li><a href="#contact">Early Access</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="mailto:hello@proteobio.io">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ProteoBio. All rights reserved.</p>
+        <p>Built with purpose. Powered by collaboration.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
