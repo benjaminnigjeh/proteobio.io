@@ -178,7 +178,7 @@ if (contactForm) {
         throw new Error('Server error');
       }
     } catch {
-      formStatus.textContent = '❌ Something went wrong. Please email us directly at hello@proteobio.io';
+      formStatus.textContent = '❌ Something went wrong. Please email us directly at admin@proteobio.io';
       formStatus.className = 'form-status error';
     }
 
