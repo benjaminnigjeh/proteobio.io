@@ -232,6 +232,227 @@ if (nlForm) {
   });
 }
 
+/* ─── Demo simulation ────────────────────────────────────────── */
+(function initDemo() {
+
+  /* ── Scripted demo scenarios ── */
+  const DEMOS = {
+    pipeline: {
+      task: 'Process my RAW file through the full proteomics pipeline.',
+      routing: [
+        { agent: 'Signal Processing',  action: 'Parse & centroid RAW spectra',                   delay: 400  },
+        { agent: 'Identification',      action: 'Trained spectral search against UniProt/SwissProt', delay: 900  },
+        { agent: 'Characterization',    action: 'Transformer PTM localization & classification',  delay: 1500 },
+        { agent: 'BioInformatics',      action: 'Pathway enrichment & PPI network analysis',      delay: 2200 },
+        { agent: 'Feature Discovery',   action: 'XAI attribution — top discriminating features', delay: 2900 },
+        { agent: 'Reporting',           action: 'Compile publication-ready report',               delay: 3500 },
+      ],
+      log: [
+        { text: '[supervisor] → routing plan generated (6 agents)',            delay: 500,  cls: 'log-line--system'    },
+        { text: '[signal-processing] → loaded 12,847 MS2 spectra',            delay: 1000, cls: ''                    },
+        { text: '[signal-processing] → centroiding complete (3.1s)',           delay: 1300, cls: ''                    },
+        { text: '[identification] ⚡ spectral search: 4,231 peptides matched', delay: 1800, cls: 'log-line--highlight' },
+        { text: '[identification] → FDR < 1% · 892 unique proteins',          delay: 2100, cls: ''                    },
+        { text: '[characterization] → transformer scan: 312 phosphosites',    delay: 2600, cls: 'log-line--highlight' },
+        { text: '[characterization] → 47 ubiquitination events mapped',       delay: 2900, cls: ''                    },
+        { text: '[bioinformatics] → PI3K-Akt pathway (p=2.1e-8)',             delay: 3400, cls: ''                    },
+        { text: '[bioinformatics] → mTOR signaling (p=4.3e-6)',               delay: 3700, cls: ''                    },
+        { text: '[feature-discovery] 💡 XAI: top features flagged (n=18)',    delay: 4100, cls: 'log-line--highlight' },
+        { text: '[quality-control] → all checks passed ✓',                    delay: 4400, cls: 'log-line--success'   },
+        { text: '[reporting] → report generated with full provenance ✓',      delay: 4800, cls: 'log-line--success'   },
+      ],
+    },
+    ptm: {
+      task: 'Identify and characterize PTMs in my phosphoproteomics dataset.',
+      routing: [
+        { agent: 'Signal Processing',  action: 'Extract phosphopeptide-enriched spectra',        delay: 400  },
+        { agent: 'Characterization',   action: 'Transformer-based PTM site localization',        delay: 1000 },
+        { agent: 'Feature Discovery',  action: 'XAI analysis of PTM-driving features',           delay: 1700 },
+        { agent: 'BioInformatics',     action: 'Kinase-substrate network mapping',               delay: 2400 },
+        { agent: 'Reporting',          action: 'PTM landscape report with confidence scores',    delay: 3000 },
+      ],
+      log: [
+        { text: '[supervisor] → routing plan: 5 agents (PTM-specialized)',     delay: 500,  cls: 'log-line--system'    },
+        { text: '[signal-processing] → 8,423 phosphopeptide spectra loaded',   delay: 1000, cls: ''                    },
+        { text: '[characterization] ⚡ transformer model: 1,847 phosphosites', delay: 1600, cls: 'log-line--highlight' },
+        { text: '[characterization] → class I localization: 94.2%',           delay: 1900, cls: ''                    },
+        { text: '[foundation-model] 🆕 23 novel modification sites detected',  delay: 2300, cls: 'log-line--highlight' },
+        { text: '[feature-discovery] 💡 Ser-Pro motif (attribution: 0.87)',    delay: 2800, cls: 'log-line--highlight' },
+        { text: '[bioinformatics] → 14 kinases implicated, CDK2 top hub',     delay: 3300, cls: ''                    },
+        { text: '[quality-control] → guard-rail checks passed ✓',             delay: 3700, cls: 'log-line--success'   },
+        { text: '[reporting] → PTM landscape report ready ✓',                 delay: 4100, cls: 'log-line--success'   },
+      ],
+    },
+    novel: {
+      task: 'Explore novel protein properties using fine-tuned foundation models.',
+      routing: [
+        { agent: 'Feature Discovery',  action: 'Foundation model embedding of peptide sequences', delay: 400  },
+        { agent: 'BioInformatics',     action: 'Cluster novel property candidates',               delay: 1100 },
+        { agent: 'Characterization',   action: 'Validate against known databases',                delay: 1800 },
+        { agent: 'Reporting',          action: 'Summarize novel findings with confidence scores', delay: 2500 },
+      ],
+      log: [
+        { text: '[supervisor] → routing plan: 4 agents (discovery mode)',      delay: 500,  cls: 'log-line--system'    },
+        { text: '[foundation-model] 🧠 fine-tuned model loaded (proteo-v2)',   delay: 900,  cls: 'log-line--highlight' },
+        { text: '[feature-discovery] → embedded 5,234 unique peptide seqs',    delay: 1400, cls: ''                    },
+        { text: '[feature-discovery] 🆕 67 peptides with novel signatures',    delay: 1900, cls: 'log-line--highlight' },
+        { text: '[feature-discovery] 💡 XAI: 31 high-confidence candidates',   delay: 2300, cls: 'log-line--highlight' },
+        { text: '[bioinformatics] → 3 clusters: PTM crosstalk, splice variants, neo-epitopes', delay: 2800, cls: '' },
+        { text: '[characterization] → validated against UniProt + PDB',        delay: 3200, cls: ''                    },
+        { text: '[quality-control] → compliance checks passed ✓',             delay: 3600, cls: 'log-line--success'   },
+        { text: '[reporting] → novel property report with CIs ready ✓',       delay: 4000, cls: 'log-line--success'   },
+      ],
+    },
+  };
+
+  const taskEl    = document.getElementById('demo-task');
+  const runBtn    = document.getElementById('demo-run');
+  const abortBtn  = document.getElementById('demo-abort');
+  const statusEl  = document.getElementById('demo-status');
+  const routingEl = document.getElementById('demo-routing');
+  const logEl     = document.getElementById('demo-log');
+
+  if (!taskEl) return;
+
+  let timers = [];
+  let running = false;
+
+  /* ── Example pill buttons ── */
+  document.querySelectorAll('.demo-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const key = pill.dataset.demo;
+      if (!DEMOS[key]) return;
+      taskEl.value = DEMOS[key].task;
+      document.querySelectorAll('.demo-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+
+  /* ── Reset UI ── */
+  function resetOutput() {
+    timers.forEach(clearTimeout);
+    timers = [];
+    running = false;
+    routingEl.innerHTML = '<p class="demo-placeholder">Submit a request to see the supervisor routing plan.</p>';
+    logEl.innerHTML     = '<p class="demo-placeholder">Agent outputs will appear here.</p>';
+    statusEl.textContent = 'idle';
+    statusEl.className   = 'demo-status';
+    runBtn.disabled  = false;
+    abortBtn.disabled = true;
+  }
+
+  /* ── Helpers ── */
+  function setStatus(s) {
+    statusEl.textContent = s;
+    statusEl.className   = 'demo-status ' + s;
+  }
+
+  function appendRoutingStep(step, state) {
+    if (routingEl.querySelector('.demo-placeholder')) routingEl.innerHTML = '';
+    const icons = { pending:'⏳', running:'⚡', done:'✅' };
+    const div = document.createElement('div');
+    div.className = 'routing-step';
+    div.style.animationDelay = '0s';
+    div.innerHTML = `
+      <span class="routing-icon">${icons[state]}</span>
+      <div class="routing-body">
+        <div class="routing-agent">${step.agent}</div>
+        <div class="routing-action">${step.action}</div>
+      </div>
+      <span class="routing-badge routing-badge--${state}">${state}</span>`;
+    routingEl.appendChild(div);
+    routingEl.scrollTop = routingEl.scrollHeight;
+    return div;
+  }
+
+  function appendLog(line) {
+    if (logEl.querySelector('.demo-placeholder')) logEl.innerHTML = '';
+    const span = document.createElement('span');
+    span.className = 'log-line ' + (line.cls || '');
+    span.textContent = line.text;
+    logEl.appendChild(span);
+    logEl.appendChild(document.createElement('br'));
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  /* ── Run simulation ── */
+  function runDemo(scenario) {
+    resetOutput();
+    running = true;
+    runBtn.disabled  = true;
+    abortBtn.disabled = false;
+    setStatus('running');
+
+    const routingNodes = [];
+
+    /* Show all routing steps as 'pending' first */
+    scenario.routing.forEach(step => {
+      routingNodes.push(appendRoutingStep(step, 'pending'));
+    });
+    routingEl.scrollTop = 0;
+
+    /* Animate routing steps to 'running' then 'done' */
+    scenario.routing.forEach((step, i) => {
+      const node = routingNodes[i];
+      const icons = { pending:'⏳', running:'⚡', done:'✅' };
+      timers.push(setTimeout(() => {
+        if (!running) return;
+        node.querySelector('.routing-icon').textContent = icons.running;
+        node.querySelector('.routing-badge').textContent = 'running';
+        node.querySelector('.routing-badge').className = 'routing-badge routing-badge--running';
+      }, step.delay));
+      timers.push(setTimeout(() => {
+        if (!running) return;
+        node.querySelector('.routing-icon').textContent = icons.done;
+        node.querySelector('.routing-badge').textContent = 'done';
+        node.querySelector('.routing-badge').className = 'routing-badge routing-badge--done';
+      }, step.delay + 600));
+    });
+
+    /* Animate log lines */
+    scenario.log.forEach(line => {
+      timers.push(setTimeout(() => {
+        if (!running) return;
+        appendLog(line);
+      }, line.delay));
+    });
+
+    /* Finish */
+    const totalTime = Math.max(...scenario.log.map(l => l.delay)) + 800;
+    timers.push(setTimeout(() => {
+      if (!running) return;
+      setStatus('done');
+      runBtn.disabled   = false;
+      abortBtn.disabled = true;
+      running = false;
+    }, totalTime));
+  }
+
+  /* ── Event listeners ── */
+  runBtn.addEventListener('click', () => {
+    const task = taskEl.value.trim();
+    if (!task) { taskEl.focus(); return; }
+
+    /* Match typed text to a demo scenario, or pick 'pipeline' as default */
+    let key = 'pipeline';
+    if (task.toLowerCase().includes('ptm') || task.toLowerCase().includes('phospho') || task.toLowerCase().includes('modification')) key = 'ptm';
+    if (task.toLowerCase().includes('novel') || task.toLowerCase().includes('foundation') || task.toLowerCase().includes('discover')) key = 'novel';
+
+    runDemo(DEMOS[key]);
+  });
+
+  abortBtn.addEventListener('click', () => {
+    timers.forEach(clearTimeout);
+    timers = [];
+    running = false;
+    setStatus('idle');
+    runBtn.disabled   = false;
+    abortBtn.disabled = true;
+    appendLog({ text: '[supervisor] → aborted by user', cls: 'log-line--system' });
+  });
+
+})();
+
 /* ─── Active nav link highlight ──────────────────────────────── */
 const sections = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');

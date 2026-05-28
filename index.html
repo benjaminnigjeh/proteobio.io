@@ -28,6 +28,7 @@
       </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#demo">Demo</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -94,6 +95,76 @@
           enforce quality controls, guard-railing, compliance, and reproducibility at every step.
         </p>
         <a href="#how-it-works" class="btn btn-outline">Explore the Architecture →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DEMO ────────────────────────────────────────────────────── -->
+  <section id="demo">
+    <div class="container">
+      <div class="section-label">Live Demo</div>
+      <h2 class="section-title">Try ProteoAgent Server</h2>
+      <p class="section-sub">Submit a proteomics task and watch the multi-agent system plan and execute in real time.</p>
+
+      <!-- Example prompt pills -->
+      <div class="demo-examples">
+        <span class="demo-examples-label">Try an example:</span>
+        <button class="demo-pill" data-demo="pipeline">Full proteomics pipeline</button>
+        <button class="demo-pill" data-demo="ptm">PTM characterization</button>
+        <button class="demo-pill" data-demo="novel">Novel property discovery</button>
+      </div>
+
+      <div class="demo-grid">
+
+        <!-- Left: Input panel -->
+        <div class="demo-panel">
+          <div class="demo-panel-header">
+            <span class="demo-panel-title">Submit a request</span>
+            <span class="demo-version-badge">v0</span>
+          </div>
+
+          <label class="demo-label">Describe the task</label>
+          <textarea class="demo-textarea" id="demo-task" rows="5"
+            placeholder="Example: Process my RAW file through the full proteomics pipeline."></textarea>
+
+          <div class="demo-row">
+            <div class="demo-field">
+              <label class="demo-label">LLM backend</label>
+              <select class="demo-select" id="demo-backend">
+                <option>Claude (Anthropic)</option>
+                <option>Ollama (local)</option>
+              </select>
+            </div>
+            <div class="demo-field">
+              <label class="demo-label">Anthropic API key</label>
+              <input class="demo-input" type="password" placeholder="sk-ant-… (demo mode)" disabled />
+            </div>
+          </div>
+
+          <div class="demo-actions">
+            <button class="btn btn-primary demo-run-btn" id="demo-run">▶ Run Supervisor</button>
+            <button class="btn demo-abort-btn" id="demo-abort" disabled>■ Abort</button>
+          </div>
+        </div>
+
+        <!-- Right: Output panel -->
+        <div class="demo-panel demo-panel--output">
+          <div class="demo-panel-header">
+            <span class="demo-panel-title">Routing plan</span>
+            <span class="demo-status" id="demo-status">idle</span>
+          </div>
+          <div class="demo-routing" id="demo-routing">
+            <p class="demo-placeholder">Submit a request to see the supervisor routing plan.</p>
+          </div>
+
+          <div class="demo-panel-header" style="margin-top:16px;">
+            <span class="demo-panel-title">Agent output log</span>
+          </div>
+          <div class="demo-log" id="demo-log">
+            <p class="demo-placeholder">Agent outputs will appear here.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
