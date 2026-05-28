@@ -86,9 +86,13 @@
             a distinct step of the proteomics pipeline.
           </p>
           <p>
-            From raw mass spectrometry data ingestion to protein identification, post-translational
-            modification mapping, and biological interpretation, ProteoAgent agents collaborate,
-            cross-check, and iterate — the same way a multidisciplinary research team would.
+            Built on trained spectral search engines, transformer-based PTM characterization,
+            explainable AI for feature discovery, and fine-tuned foundation models for novel property
+            exploration — ProteoAgent brings cutting-edge AI to every layer of the proteomics workflow.
+          </p>
+          <p>
+            Expert agents collaborate through closed agentic loops, guided by auxiliary agents that
+            enforce quality controls, guard-railing, compliance, and reproducibility at every step.
           </p>
           <a href="#how-it-works" class="btn btn-outline">Explore the Architecture →</a>
         </div>
@@ -119,50 +123,50 @@
       <div class="section-label">Capabilities</div>
       <h2 class="section-title">What ProteoAgent can do</h2>
       <p class="section-sub">
-        Each agent is a specialist. Together they form a complete proteomics intelligence platform.
+        Purpose-built AI technologies working in concert — from raw spectra to biological insight.
       </p>
       <div class="features-grid">
 
-        <div class="feature-card">
-          <div class="feature-icon">🧬</div>
-          <h3>Protein Identification</h3>
-          <p>Automated sequence database searching and de novo peptide sequencing from MS/MS spectra with high confidence scoring.</p>
-          <div class="feature-tag">Mass Spec · Database Search</div>
+        <div class="feature-card feature-card--highlight">
+          <div class="feature-icon">⚡</div>
+          <h3>Trained Spectral Search Engines</h3>
+          <p>Purpose-trained search engines deliver ultra-fast spectral matching at scale — orders of magnitude faster than conventional tools, without sacrificing sensitivity or specificity.</p>
+          <div class="feature-tag">High-Speed · Trained Models · MS/MS</div>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card feature-card--highlight">
           <div class="feature-icon">🔬</div>
-          <h3>PTM Mapping</h3>
-          <p>Comprehensive post-translational modification detection — phosphorylation, glycosylation, ubiquitination and beyond — with site localization.</p>
-          <div class="feature-tag">PTM · Site Localization</div>
+          <h3>Transformer-Based PTM Characterization</h3>
+          <p>Transformer architectures capture long-range sequence context to precisely localize and classify post-translational modifications — including rare and co-occurring PTMs missed by classical tools.</p>
+          <div class="feature-tag">Transformers · PTM · Site Localization</div>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3>Quantitative Analysis</h3>
-          <p>Label-free and label-based quantification across samples. Statistical analysis, differential expression, and volcano plots — automated.</p>
-          <div class="feature-tag">LFQ · TMT · SILAC</div>
+        <div class="feature-card feature-card--highlight">
+          <div class="feature-icon">💡</div>
+          <h3>Explainable AI for Feature Discovery</h3>
+          <p>Our XAI layer surfaces the biological and spectral features driving every prediction — giving researchers transparent, interpretable evidence rather than a black-box score.</p>
+          <div class="feature-tag">XAI · Interpretability · Feature Attribution</div>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">🕸️</div>
-          <h3>Pathway Enrichment</h3>
-          <p>Instant biological interpretation: GO term enrichment, KEGG pathway mapping, and protein-protein interaction network analysis.</p>
-          <div class="feature-tag">GO · KEGG · STRING</div>
+        <div class="feature-card feature-card--highlight">
+          <div class="feature-icon">🧠</div>
+          <h3>Fine-Tuned Foundation Models</h3>
+          <p>Large foundation models fine-tuned on curated proteomics datasets unlock discovery of novel protein properties, unexpected modifications, and emergent biological signals beyond known databases.</p>
+          <div class="feature-tag">Foundation Models · Novel Properties · Fine-Tuning</div>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🤝</div>
-          <h3>Agent Collaboration</h3>
-          <p>Agents share intermediate results, flag uncertainties, and request validation from peer agents — mimicking expert peer review.</p>
-          <div class="feature-tag">Multi-Agent · Self-Correction</div>
+          <h3>Multi-Agent Orchestration</h3>
+          <p>ProteoAgent coordinates Expert and Auxiliary agents through agentic loops — with built-in guard-railing, error handling, compliance, and quality controls at every step.</p>
+          <div class="feature-tag">Orchestration · Guard-Railing · QC</div>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">📝</div>
-          <h3>Automated Reports</h3>
-          <p>Publication-ready reports with figures, statistical summaries, and methods sections — generated end-to-end from raw data.</p>
-          <div class="feature-tag">Reports · Reproducibility</div>
+          <h3>Automated Reporting</h3>
+          <p>Publication-ready reports with full provenance, statistical summaries, and methods — generated end-to-end with compliance and reproducibility baked in.</p>
+          <div class="feature-tag">Reports · Compliance · Reproducibility</div>
         </div>
 
       </div>
@@ -173,65 +177,100 @@
   <section id="how-it-works">
     <div class="container">
       <div class="section-label">Architecture</div>
-      <h2 class="section-title">How ProteoAgent works</h2>
-      <p class="section-sub">A pipeline of coordinated agents — each one expert, all working in concert.</p>
+      <h2 class="section-title">The ProteoAgent Server</h2>
+      <p class="section-sub">A fully orchestrated multi-agent system with expert agents, auxiliary agents, and closed agentic feedback loops.</p>
 
-      <div class="pipeline">
+      <div class="arch-diagram">
 
-        <div class="pipeline-step">
-          <div class="step-num">01</div>
-          <div class="step-body">
-            <h3>Data Ingestion Agent</h3>
-            <p>Accepts raw mass spectrometry files (mzML, raw, d). Validates, converts formats, and indexes spectra for downstream agents.</p>
+        <!-- ── Column 1: Inputs ── -->
+        <div class="arch-col arch-col--inputs">
+          <div class="arch-chip arch-chip--input">
+            <span class="arch-chip-icon">👤</span>
+            <span>Human</span>
           </div>
-          <div class="step-chip">Input Layer</div>
+          <div class="arch-connector arch-connector--v">⋮</div>
+          <div class="arch-chip arch-chip--input">
+            <span class="arch-chip-icon">🔗</span>
+            <span>External Agentic Systems</span>
+            <span class="arch-chip-sub">Co-Scientist · ROBIN</span>
+          </div>
         </div>
 
-        <div class="pipeline-arrow">↓</div>
+        <div class="arch-arrow">→</div>
 
-        <div class="pipeline-step">
-          <div class="step-num">02</div>
-          <div class="step-body">
-            <h3>Search & Identification Agent</h3>
-            <p>Runs database searches against UniProt/SwissProt, scores PSMs, applies FDR thresholds, and flags ambiguous identifications for review.</p>
+        <!-- ── Column 2: API Key ── -->
+        <div class="arch-col">
+          <div class="arch-box arch-box--api">
+            <span class="arch-box-label">API Key</span>
           </div>
-          <div class="step-chip">Core Analysis</div>
         </div>
 
-        <div class="pipeline-arrow">↓</div>
+        <div class="arch-arrow">→</div>
 
-        <div class="pipeline-step">
-          <div class="step-num">03</div>
-          <div class="step-body">
-            <h3>PTM & Quantification Agent</h3>
-            <p>Detects modifications, performs quantification across conditions, and runs statistical comparisons with multiple testing correction.</p>
+        <!-- ── Column 3: ProteoAgent Orchestrator ── -->
+        <div class="arch-col">
+          <div class="arch-box arch-box--orchestrator">
+            <span class="arch-box-title">ProteoAgent</span>
+            <ul class="arch-box-list">
+              <li>Communications</li>
+              <li>Planning</li>
+              <li>Agent selection</li>
+              <li>Decision making</li>
+            </ul>
           </div>
-          <div class="step-chip">Quantitative Layer</div>
         </div>
 
-        <div class="pipeline-arrow">↓</div>
+        <div class="arch-arrow">→</div>
 
-        <div class="pipeline-step">
-          <div class="step-num">04</div>
-          <div class="step-body">
-            <h3>Biological Interpretation Agent</h3>
-            <p>Contextualizes results with literature, pathways, and interaction networks. Generates hypotheses for follow-up experiments.</p>
+        <!-- ── Column 4: Expert Agents ── -->
+        <div class="arch-col">
+          <div class="arch-group-label">Expert Agents</div>
+          <div class="arch-agent-stack">
+            <div class="arch-agent">BioInformatics</div>
+            <div class="arch-agent">Signal Processing</div>
+            <div class="arch-agent arch-agent--highlight">Feature Discovery</div>
+            <div class="arch-agent">Identification</div>
+            <div class="arch-agent arch-agent--highlight">Characterization</div>
+            <div class="arch-agent">Integration</div>
           </div>
-          <div class="step-chip">Intelligence Layer</div>
         </div>
 
-        <div class="pipeline-arrow">↓</div>
+        <div class="arch-arrow">→</div>
 
-        <div class="pipeline-step">
-          <div class="step-num">05</div>
-          <div class="step-body">
-            <h3>Report & Validation Agent</h3>
-            <p>Compiles findings, cross-validates with peer agents, and outputs reproducible reports with full provenance tracking.</p>
+        <!-- ── Column 5: Auxiliary Agents ── -->
+        <div class="arch-col">
+          <div class="arch-group-label">Auxiliary Agents</div>
+          <div class="arch-agent-stack">
+            <div class="arch-agent arch-agent--aux">GuardRailing</div>
+            <div class="arch-agent arch-agent--aux">Error handling</div>
+            <div class="arch-agent arch-agent--aux">Quality Controls</div>
+            <div class="arch-agent arch-agent--aux">Compliance</div>
+            <div class="arch-agent arch-agent--aux">Threading</div>
+            <div class="arch-agent arch-agent--aux">Reporting</div>
           </div>
-          <div class="step-chip">Output Layer</div>
         </div>
 
       </div>
+
+      <!-- Agentic Loop Label -->
+      <div class="arch-loop-label">
+        <div class="arch-loop-line"></div>
+        <span>Agentic Loops</span>
+        <div class="arch-loop-line"></div>
+      </div>
+
+      <!-- Legend -->
+      <div class="arch-legend">
+        <div class="legend-item">
+          <span class="legend-dot legend-dot--expert"></span>
+          <span>Expert Agents — domain-specialized AI (trained spectral search, transformer PTM, XAI feature discovery)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-dot--aux"></span>
+          <span>Auxiliary Agents — system-level safety, quality, compliance and output</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -265,19 +304,19 @@
             <div class="cc-icon">✉️</div>
             <h3>Email Us</h3>
             <p>For general inquiries and collaborations</p>
-            <a href="mailto:hello@proteobio.io">hello@proteobio.io</a>
+            <a href="mailto:admin@proteobio.io">admin@proteobio.io</a>
           </div>
           <div class="contact-card">
             <div class="cc-icon">🔬</div>
             <h3>Research Partnership</h3>
             <p>Academic and institutional collaborations</p>
-            <a href="mailto:research@proteobio.io">research@proteobio.io</a>
+            <a href="mailto:admin@proteobio.io">admin@proteobio.io</a>
           </div>
           <div class="contact-card">
             <div class="cc-icon">🚀</div>
             <h3>Early Access</h3>
             <p>Join our pilot program</p>
-            <a href="mailto:pilot@proteobio.io">pilot@proteobio.io</a>
+            <a href="mailto:admin@proteobio.io">admin@proteobio.io</a>
           </div>
         </div>
 
@@ -341,7 +380,7 @@
             <h4>Company</h4>
             <ul>
               <li><a href="#about">About</a></li>
-              <li><a href="mailto:hello@proteobio.io">Contact</a></li>
+              <li><a href="mailto:admin@proteobio.io">Contact</a></li>
             </ul>
           </div>
         </div>

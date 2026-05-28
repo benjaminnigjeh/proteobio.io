@@ -508,73 +508,206 @@ input, textarea, select, button { font-family: inherit; }
   display: inline-block;
 }
 
-/* ─── HOW IT WORKS ───────────────────────────────────────────── */
+/* ─── HOW IT WORKS / ARCHITECTURE ────────────────────────────── */
 #how-it-works {
   padding: 120px 0;
   background: var(--bg-2);
+  overflow-x: auto;
 }
 
-.pipeline {
-  max-width: 720px;
-  margin: 0 auto;
+/* Architecture diagram */
+.arch-diagram {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 32px;
+  width: max-content;
+  max-width: 100%;
+}
+
+.arch-col {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
+  gap: 10px;
 }
 
-.pipeline-step {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 56px 1fr auto;
-  gap: 24px;
-  align-items: start;
-  background: var(--bg-3);
-  border: 1px solid var(--border);
+.arch-col--inputs { gap: 16px; }
+
+/* Input chips */
+.arch-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.35);
   border-radius: var(--radius);
-  padding: 28px;
-  transition: border-color var(--transition);
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--violet-light);
+  text-align: center;
+  min-width: 120px;
 }
+.arch-chip-icon { font-size: 1.2rem; }
+.arch-chip-sub  { font-size: 0.68rem; color: var(--text-faint); font-weight: 400; }
+.arch-connector--v { color: var(--text-faint); font-size: 1rem; letter-spacing: 2px; }
 
-.pipeline-step:hover { border-color: rgba(0, 212, 255, 0.35); }
-
-.step-num {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
+/* API Key box */
+.arch-box--api {
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  min-width: 90px;
+  text-align: center;
+}
+.arch-box-label {
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--violet-light);
-  line-height: 1;
-  padding-top: 4px;
+  letter-spacing: 0.04em;
 }
 
-.step-body h3 {
+/* ProteoAgent orchestrator box */
+.arch-box--orchestrator {
+  background: linear-gradient(135deg, rgba(220,38,38,0.18), rgba(220,38,38,0.08));
+  border: 2px solid rgba(239,68,68,0.5);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  min-width: 160px;
+  text-align: center;
+}
+.arch-box-title {
+  display: block;
   font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 6px;
+  font-weight: 700;
+  color: #f87171;
+  margin-bottom: 12px;
+  letter-spacing: 0.03em;
 }
-
-.step-body p {
+.arch-box-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.arch-box-list li {
+  font-size: 0.75rem;
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-weight: 500;
 }
 
-.step-chip {
+/* Agent stacks */
+.arch-group-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-faint);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 4px 10px;
-  white-space: nowrap;
-  align-self: start;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
-.pipeline-arrow {
+.arch-agent-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.arch-agent {
+  background: rgba(0, 212, 255, 0.07);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text);
+  min-width: 140px;
+  text-align: center;
+  transition: border-color var(--transition), background var(--transition);
+}
+.arch-agent:hover {
+  border-color: var(--cyan);
+  background: rgba(0, 212, 255, 0.12);
+}
+.arch-agent--highlight {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.12);
+  color: var(--cyan);
+  font-weight: 600;
+}
+.arch-agent--aux {
+  background: rgba(124, 58, 237, 0.07);
+  border-color: rgba(124, 58, 237, 0.25);
+}
+.arch-agent--aux:hover {
+  border-color: var(--violet-light);
+  background: rgba(124, 58, 237, 0.12);
+}
+
+/* Arrow between cols */
+.arch-arrow {
   font-size: 1.4rem;
   color: var(--text-faint);
-  padding: 6px 0;
+  flex-shrink: 0;
   animation: arrow-pulse 2s ease-in-out infinite;
+}
+
+/* Agentic loop label */
+.arch-loop-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 8px auto 32px;
+  max-width: 860px;
+}
+.arch-loop-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.3), transparent);
+  border-top: 1px dashed rgba(0,212,255,0.3);
+}
+.arch-loop-label span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--cyan);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Legend */
+.arch-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.83rem;
+  color: var(--text-muted);
+}
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legend-dot--expert { background: var(--cyan); }
+.legend-dot--aux    { background: var(--violet-light); }
+
+/* Feature card highlight variant */
+.feature-card--highlight {
+  border-color: rgba(0, 212, 255, 0.2);
+  background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(124,58,237,0.04));
+}
+.feature-card--highlight:hover {
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,212,255,0.15), 0 0 30px rgba(0,212,255,0.08);
 }
 
 @keyframes arrow-pulse {
